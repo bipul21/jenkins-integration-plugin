@@ -169,6 +169,7 @@ public class BrowserStackBuildWrapper extends BuildWrapper {
         public void startBrowserStackLocal() throws Exception {
             browserstackLocal = new JenkinsBrowserStackLocal(accesskey, localConfig.getLocalOptions());
             log(logger, "Local: Starting BrowserStack Local...");
+            log(logger, "Local: Starting with localIdentifier = " + browserstackLocal.getLocalIdentifier() );
             browserstackLocal.start(launcher);
             log(logger, "Local: Started");
         }
@@ -176,8 +177,9 @@ public class BrowserStackBuildWrapper extends BuildWrapper {
         public void stopBrowserStackLocal() throws Exception {
             if (browserstackLocal != null) {
                 log(logger, "Local: Stopping BrowserStack Local...");
-
+                log(logger, "Local: Is Local Running = " + browserstackLocal.isRunning());
                 try {
+                    log(logger, "Local: Stopping with localIdentifier = " + browserstackLocal.getLocalIdentifier());
                     browserstackLocal.stop(launcher);
                     log(logger, "Local: Stopped");
                 } catch (Exception e) {
